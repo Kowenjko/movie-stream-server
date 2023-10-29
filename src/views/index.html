@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Video player</title>
+  </head>
+  <body>
+    <div id="app">
+      <video :src="videoUrl" controls autoplay></video>
+      <hr />
+      <input v-model="searchText" placeholder="Find movie" type="search" />
+      <button @click="findMovie">Search</button>
+      <hr />
+      <p>videoUrl <b>{{videoUrl}}</b></p>
+      <hr />
+      <ul>
+        <li v-for="file in files" :key="file.magnet">{{ file.title }} <button @click="play(file)">Play</button></li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    const { createApp, computed, ref, onMounted } = Vue
+
+    createApp({
+      setup() {
+        const files = ref([])
+        const searchText = ref('Человек паук')
+
+        const activeVideo = ref({})
+
+        const videoUrl = computed(() =>
+          activeVideo.value.fileName ? `/stream/${activeVideo.value.magnet}/${activeVideo.value.fileName}` : ''
+        )
+        const play = async (file) => {
+          console.log(file)
+          const { data } = await axios.get(`/stream/add/${file.magnet}`)
+
+          console.log(data)
+
+          activeVideo.value = {
+            magnet: file.magnet,
+            // magnet: '0d64a077007a2cdd9663ee715f8f756e1e3ca1fc',
+            fileName: data[0].name
+          }
+        }
+
+        const findMovie = async () => {
+          const response = await axios.get(`/movies/search?searchTerm=${searchText.value}`)
+          files.value = response.data
+        }
+
+        const getMyMovies = async () => {
+          const response = await axios.get(`/movies`)
+          files.value = response.data
+        }
+
+        onMounted(async () => await getMyMovies())
+        return {
+          videoUrl,
+          play,
+          files,
+          searchText,
+          findMovie
+        }
+      }
+    }).mount('#app')
+  </script>
+</html>

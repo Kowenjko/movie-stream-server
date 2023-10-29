@@ -1,0 +1,31 @@
+export const movieMock = JSON.stringify({
+  title: 'Человек-паук: Нет пути домой',
+  plot: 'Жизнь и репутация Питера Паркера оказываются под угрозой, поскольку Мистерио раскрыл всему миру тайну личности Человека-паука. Пытаясь исправить ситуацию, Питер обращается за помощью к Стивену Стрэнджу, но вскоре всё становится намного опаснее.',
+  year: '2021',
+  director: 'Джон Уоттс',
+  actors: [
+    'Том Холланд',
+    'Зендея',
+    'Бенедикт Камбербэтч',
+    'Мариса Томей',
+    'Уиллем Дефо',
+    'Альфред Молина',
+    'Джейми Фокс',
+    'Томас Хейден Чёрч',
+    'Рис Иванс',
+    'Джейкоб Баталон'
+  ],
+  poster: 'http://lostpix.com/img/2022-03/14/o870u97dhcp3rkuqe2flk01kp.png',
+  trailer: 'https://www.youtube.com/watch?v=JfVOs4VSpmA',
+  boxOffice: '',
+  released: '2021',
+  writer: 'Крис МакКенна',
+  runtime: '148',
+  ratingImdb: '8.3',
+  imdbId: 'tt10872600',
+  rated: 'PG-13 ',
+  genres: ['Фантастика', 'боевик', 'приключения', 'фэнтези'],
+  fileName: 'Spider.Man.No.Way.Home.2021.Ext.Cut.WEB-DL.1080p.seleZen.mkv',
+  magnet: 'f87c2afb4983f7bd5246285c9c0e1ae4c3ffd743',
+  sourceUrl: 'https://rutor.info/torrent/896754/chelovek-pauk-net-puti-domoj_spider-man-no-way-home-2021-web-dl-1080p-ot-selezen-d-rasshirennaja-versija'
+})
